@@ -36,7 +36,11 @@ export default function Home() {
 
     if (row[index][columnIndex] == "❌") {
       callSheetAction('event', { index, eventName })
-    } else { alert(`Already Scanned for ${eventName}`) }
+    } else { alert(`Already Scanned for ${eventName}\n
+      Name: ${row[index][1]}\n
+      Firm Name: ${row[index][2]}\n
+      Mobile: ${row[index][3]}
+      `) }
 
     // console.log(index)
   }
