@@ -61,7 +61,8 @@ export default function Home() {
 
 
   useEffect(() => {
-    return () => callSheetAction('get')
+    console.log("trying to get data..."); 
+    callSheetAction('get')
   }, [])
 
 
