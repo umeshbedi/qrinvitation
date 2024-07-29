@@ -40,7 +40,8 @@ export default function Home() {
       alert(`Already Scanned for ${eventName}\n
       Name: ${row[index][1]}\n
       Firm Name: ${row[index][2]}\n
-      Mobile: ${row[index][3]}
+      Region: ${row[index][3]}\n
+      Mobile: ${row[index][4]}\n
       `)
     }
 
