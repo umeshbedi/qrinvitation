@@ -36,11 +36,13 @@ export default function Home() {
 
     if (row[index][columnIndex] == "❌") {
       callSheetAction('event', { index, eventName })
-    } else { alert(`Already Scanned for ${eventName}\n
+    } else {
+      alert(`Already Scanned for ${eventName}\n
       Name: ${row[index][1]}\n
       Firm Name: ${row[index][2]}\n
       Mobile: ${row[index][3]}
-      `) }
+      `)
+    }
 
     // console.log(index)
   }
@@ -69,28 +71,36 @@ export default function Home() {
 
         <div>
           <h1>Table</h1>
-          <table>
-            <tbody>
-              <tr>
-                {column.map((item, i) => (
-                  <th key={i}>{item}</th>
-                ))}
-                <th>Action</th>
-              </tr>
-              {row.map((item, i) => (
-                <tr key={i}>
-                  {item.map((itm, j) => (
-                    <td key={j}>{itm}</td>
+          {column.length == 0
+            ?
+            (<>loading table...</>)
+            :
+            (
+              <table>
+                <tbody>
+                  <tr>
+                    {column.map((item, i) => (
+                      <th key={i}>{item}</th>
+                    ))}
+                    <th>Action</th>
+                  </tr>
+                  {row.map((item, i) => (
+                    <tr key={i}>
+                      {item.map((itm, j) => (
+                        <td key={j}>{itm}</td>
+                      ))}
+                      <td>
+                        <button className='bg-green-600 text-white p-1' onClick={() => { setQrData(item); setrowIndex(i) }}>generate QR</button>
+                      </td>
+
+                    </tr>
                   ))}
-                  <td>
-                    <button className='bg-green-600 text-white p-1' onClick={() => { setQrData(item); setrowIndex(i) }}>generate QR</button>
-                  </td>
 
-                </tr>
-              ))}
-
-            </tbody>
-          </table>
+                </tbody>
+              </table>
+            )
+          }
+          
           {/* <button onClick={checkFilter}>check filter</button> */}
           {qrData != null && <QRcode data={JSON.stringify(qrData)} rowIndex={rowIndex} isGenerated={(data) => setRow(data.allRows)} />}
 
